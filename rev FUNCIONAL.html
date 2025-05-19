@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Catálogo HP com JS Moderno</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #f8f8ff;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #4b0082;
+    }
+
+    .card {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin: 10px 0;
+      border-left: 5px solid #4b0082;
+      background: white;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Personagens de Harry Potter 🧙‍♂️</h1>
+  <button id="load-btn">Carregar Personagens</button>
+  <div id="list"></div>
+
+  <script>
+    // Classe base
+    class Personagem {
+      constructor({ name, house }) {
+        this.name = name;
+        this.house = house || "Desconhecida";
+      }
+
+      exibirInfo() {
+        return `${this.name} da casa ${this.house}`;
+      }
+    }
+
+    // Classe derivada
+    class Staff extends Personagem {
+      constructor(dados) {
+        super(dados);
+        this.ancestry = dados.ancestry;
+      }
+
+      exibirInfo() {
+        return `${super.exibirInfo()} (Ancestralidade: ${this.ancestry || 'N/A'})`;
+      }
+    }
+
+    // Função para criar elementos do DOM
+    const criarCard = (texto) => {
+      const div = document.createElement("div");
+      div.className = "card";
+      div.innerText = texto;
+      return div;
+    }
+
+    // Função assíncrona para buscar dados
+    async function buscarPersonagens() {
+      const url = "https://hp-api.onrender.com/api/characters/staff";
+      try {
+        const resposta = await fetch(url);
+        const dados = await resposta.json();
+
+        // Usando map + classe para criar objetos
+        const personagens = dados.map(p => new Staff(p));
+
+        // Filtrar personagens vivos
+        const vivos = personagens.filter(p => p.name && p.name !== "Unknown");
+
+        // Reduzir a lista para pegar só nomes (exemplo de reduce)
+        const nomesConcatenados = vivos.reduce((acc, p) => acc + p.name + ", ", "");
+
+        console.log("Todos:", personagens);
+        console.log("Vivos:", vivos);
+        console.log("Nomes concatenados:", nomesConcatenados);
+
+        return vivos;
+      } catch (err) {
+        console.error("Erro ao buscar personagens:", err);
+        return [];
+      }
+    }
+
+    // Evento do botão
+    document.getElementById("load-btn").addEventListener("click", async () => {
+      const lista = document.getElementById("list");
+      lista.innerHTML = "Carregando...";
+
+      const resultado = await buscarPersonagens();
+      lista.innerHTML = "";
+
+      resultado.forEach(p => {
+        lista.appendChild(criarCard(p.exibirInfo()));
+      });
+    });
+  </script>
+</body>
+</html>

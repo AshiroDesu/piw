@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Lista de Alunos</title>
+  <style>
+    .vermelho {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Alunos</h2>
+  <ul id="listaAlunos">
+    <li>Sebastião</li>
+    <li>Ambrósio</li>
+    <li>Liduino</li>
+    <li>Filó</li>
+    <li>Galadriel</li>
+    <li>Bombadil</li>
+  </ul>
+
+  <script>
+
+    const alunos = document.querySelectorAll('#listaAlunos li');
+
+    alunos.forEach(function(aluno, index) {
+      if (index % 2 === 0) { // posição par (0, 2, 4...)
+        aluno.classList.add('vermelho');
+      }
+    });
+  
+  </script>
+</body>
+</html>

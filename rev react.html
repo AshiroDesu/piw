@@ -1,0 +1,138 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Resumo React - Prova</title>
+  <style>
+    body { font-family: monospace; background: #1e1e1e; color: #dcdcdc; padding: 1rem; }
+    pre { background: #2d2d2d; padding: 1rem; overflow-x: auto; }
+    h2 { color: #00ffff; }
+    a { color: #00ddff; }
+  </style>
+</head>
+<body>
+
+<h1>Resumo Rápido React</h1>
+
+<h2>1. Instalar e iniciar projeto com Vite</h2>
+<pre>
+# Instalar Node.js: https://nodejs.org/en/download/
+npm create vite@latest
+# Escolher React + JavaScript
+cd nome-do-projeto
+npm install
+npm run dev
+</pre>
+
+<h2>2. Estrutura base App.jsx</h2>
+<pre>
+import './App.css'
+
+function App() {
+  return (
+    &lt;div className="App"&gt;
+      &lt;h1&gt;Hello React!&lt;/h1&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default App;
+</pre>
+
+<h2>3. Criar Componente em outro arquivo</h2>
+<pre>
+// MyButton.jsx
+export function MyButton() {
+  return &lt;button&gt;Clica aqui&lt;/button&gt;;
+}
+
+// App.jsx
+import { MyButton } from './MyButton';
+
+function App() {
+  return (
+    &lt;&gt;
+      &lt;h1&gt;Exemplo&lt;/h1&gt;
+      &lt;MyButton /&gt;
+    &lt;/&gt;
+  );
+}
+</pre>
+
+<h2>4. Regras básicas JSX</h2>
+<pre>
+- Um componente deve retornar apenas 1 elemento. Use &lt;&gt;&lt;/&gt; (Fragment) se precisar.
+- Nome de componente deve começar com MAIÚSCULA.
+- Para escrever JavaScript dentro do JSX, use { }.
+</pre>
+
+<h2>5. Estilização</h2>
+<pre>
+/* App.css */
+.App {
+  text-align: center;
+}
+
+/* Componente com CSS separado */
+ElementoColorido.jsx
+ElementoColorido.css
+</pre>
+
+<h2>6. Exemplo com MUI (Material UI)</h2>
+<pre>
+npm install @mui/material @emotion/react @emotion/styled
+
+// App.jsx
+import Button from '@mui/material/Button';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+
+function App() {
+  return (
+    &lt;Button
+      variant="contained"
+      startIcon={&lt;ShoppingCartIcon /&gt;}
+      onClick={() =&gt; console.log("Clicado!")}
+    &gt;
+      Adicionar ao Carrinho
+    &lt;/Button&gt;
+  );
+}
+</pre>
+
+<h2>7. API Externa: Exemplo com PokeAPI</h2>
+<pre>
+let pokeNumber = 25;
+let url = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokeNumber}.png`;
+</pre>
+
+<h2>8. Componentização</h2>
+<pre>
+// Dado.jsx
+export function Dado() {
+  const numero = Math.floor(Math.random() * 6) + 1;
+  return &lt;span&gt;🎲 {numero}&lt;/span&gt;;
+}
+
+// MaoDeDados.jsx
+import { Dado } from './Dado';
+
+export function MaoDeDados() {
+  return (
+    &lt;div&gt;
+      &lt;Dado /&gt; &lt;Dado /&gt; &lt;Dado /&gt;
+    &lt;/div&gt;
+  );
+}
+</pre>
+
+<h2>Links úteis</h2>
+<ul>
+  <li><a href="https://vitejs.dev/guide/" target="_blank">Vite Guide</a></li>
+  <li><a href="https://mui.com/material-ui/all-components/" target="_blank">Material UI Docs</a></li>
+  <li><a href="https://github.com/brillout/awesome-react-components" target="_blank">Awesome React Components</a></li>
+</ul>
+
+</body>
+</html>

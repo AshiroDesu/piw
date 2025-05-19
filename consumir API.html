@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Cafés Quentes ☕</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fffbea;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #6b4f2d;
+    }
+
+    .card {
+      background: white;
+      border-left: 5px solid #b5651d;
+      padding: 10px;
+      margin: 10px 0;
+      box-shadow: 1px 1px 5px #ccc;
+    }
+
+    .card img {
+      width: 100px;
+      float: right;
+      margin-left: 10px;
+    }
+
+    .card p {
+      margin: 5px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>☕ Cafés Quentes da API</h1>
+  <button onclick="carregarCafes()">Carregar Cafés</button>
+  <div id="lista-cafes"></div>
+
+  <script>
+    async function carregarCafes() {
+      const container = document.getElementById("lista-cafes");
+      container.innerHTML = "Carregando...";
+
+      try {
+        const resposta = await fetch("https://api.sampleapis.com/coffee/hot");
+        const dados = await resposta.json();
+
+        // Limpa container
+        container.innerHTML = "";
+
+        // Percorre os dados e cria os cards
+        dados.map(cafe => {
+          const card = document.createElement("div");
+          card.className = "card";
+
+          card.innerHTML = `
+            <h2>${cafe.title}</h2>
+            <img src="${cafe.image}" alt="Café ${cafe.title}">
+            <p><strong>Descrição:</strong> ${cafe.description || "Sem descrição."}</p>
+            <p><strong>Ingredientes:</strong> ${cafe.ingredients.join(", ")}</p>
+          `;
+
+          container.appendChild(card);
+        });
+
+      } catch (erro) {
+        container.innerHTML = `<p style="color:red;">Erro ao carregar os cafés: ${erro.message}</p>`;
+      }
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Exercício 3 - JS Aula 1</title>
+</head>
+<body>
+  <h1>Exercício 3 - JavaScript</h1>
+  <h2>Aluno: Aglivan Gomes da Silva Junior - 555291</h2>
+
+  <h2>Filtrando livros disponíveis</h2>
+  <p>Filtre os livros que estão disponíveis para empréstimo com o método filter.</p>
+  <hr>
+
+  <h2>*Abrir console*</h2>
+
+  <script>
+    console.log("=== Exercício 3 ===");
+
+    const livros = [
+      { titulo: "JavaScript para Iniciantes", autor: "João Silva", disponivel: true },
+      { titulo: "CSS Avançado", autor: "Maria Oliveira", disponivel: false },
+      { titulo: "React Rápido", autor: "Ana Souza", disponivel: true }
+    ];
+
+    const livrosDisponiveis = livros.filter(livro => livro.disponivel);
+    
+    console.log("Livros disponíveis:");
+    livrosDisponiveis.forEach(livro => console.log(livro));
+  </script>
+</body>
+</html>

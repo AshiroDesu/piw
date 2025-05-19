@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>JS - Aula 2 (Funções, Classes, DOM)</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #eef;
+    }
+    section {
+      background-color: white;
+      padding: 15px;
+      margin-bottom: 20px;
+      border-left: 5px solid #007acc;
+    }
+    h2 {
+      color: #007acc;
+    }
+    pre {
+      background-color: #f4f4f4;
+      padding: 10px;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <section>
+    <h2>Funções</h2>
+    <pre>
+function add(x, y) {
+  return x + y;
+}
+
+function somarTudo() {
+  let total = 0;
+  for (let i = 0; i < arguments.length; i++) {
+    total += arguments[i];
+  }
+  return total;
+}
+    </pre>
+  </section>
+
+  <section>
+    <h2>Arrow Functions e Funções Anônimas</h2>
+    <pre>
+const somar = (a, b) => a + b;
+
+const media = (...nums) => {
+  let soma = nums.reduce((acc, val) => acc + val, 0);
+  return soma / nums.length;
+};
+    </pre>
+  </section>
+
+  <section>
+    <h2>Template Literals</h2>
+    <pre>
+let nome = "Maria";
+let idade = 22;
+let frase = `A aluna ${nome} tem ${idade} anos.`;
+    </pre>
+  </section>
+
+  <section>
+    <h2>Spread Operator</h2>
+    <pre>
+const arr1 = [1, 2];
+const arr2 = [3, 4];
+const combinado = [...arr1, ...arr2]; // [1, 2, 3, 4]
+
+const obj1 = { a: 1 };
+const obj2 = { b: 2 };
+const combinadoObj = { ...obj1, ...obj2 }; // { a: 1, b: 2 }
+    </pre>
+  </section>
+
+  <section>
+    <h2>Classes e Construtores</h2>
+    <pre>
+class Pessoa {
+  constructor(nome, email) {
+    this.nome = nome;
+    this.email = email;
+  }
+}
+
+const joao = new Pessoa("João", "joao@email.com");
+console.log(joao.nome);
+    </pre>
+  </section>
+
+  <section>
+    <h2>Classes com Get e Set</h2>
+    <pre>
+class Produto {
+  constructor(nome, preco) {
+    this.nome = nome;
+    this._preco = preco;
+  }
+
+  get preco() {
+    return `R$ ${this._preco.toFixed(2)}`;
+  }
+
+  set preco(novoPreco) {
+    if (novoPreco > 0) this._preco = novoPreco;
+  }
+}
+    </pre>
+  </section>
+
+  <section>
+    <h2>Herança com Class</h2>
+    <pre>
+class Animal {
+  constructor(nome) {
+    this.nome = nome;
+  }
+  falar() {
+    console.log(`${this.nome} faz um som.`);
+  }
+}
+
+class Gato extends Animal {
+  falar() {
+    console.log(`${this.nome} diz: Miau!`);
+  }
+}
+    </pre>
+  </section>
+
+  <section>
+    <h2>DOM - Acessando elementos</h2>
+    <pre>
+document.getElementById("meuId")
+document.querySelector(".classe")
+document.querySelectorAll("p")
+    </pre>
+  </section>
+
+  <section>
+    <h2>DOM - Alterando conteúdo e estilo</h2>
+    <pre>
+const p = document.querySelector("p");
+p.innerText = "Novo texto";
+p.style.color = "blue";
+    </pre>
+  </section>
+
+  <section>
+    <h2>Protótipos</h2>
+    <pre>
+function Pessoa(nome) {
+  this.nome = nome;
+}
+
+Pessoa.prototype.falar = function() {
+  console.log(`Olá, meu nome é ${this.nome}`);
+};
+
+const maria = new Pessoa("Maria");
+maria.falar();
+    </pre>
+  </section>
+
+</body>
+</html>

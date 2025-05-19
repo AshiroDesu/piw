@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Resumo JavaScript - Prova</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      padding: 20px;
+    }
+    h2 {
+      background-color: #333;
+      color: white;
+      padding: 10px;
+    }
+    section {
+      background-color: white;
+      border: 1px solid #ccc;
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+    p {
+      margin-bottom: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- AULA 1 -->
+  <section>
+    <h2>1. Revisão - Aula 1: Fundamentos JS</h2>
+    <p><strong>Variáveis:</strong> let, const, var</p>
+    <p><strong>Tipos:</strong> number, string, boolean, undefined, null, object</p>
+    <p><strong>Operadores:</strong> +, -, *, /, %, ==, ===, &&, ||, ?</p>
+    <p><strong>Estruturas:</strong></p>
+    <pre>
+if (cond) { ... } else { ... }
+for (let i = 0; i < 5; i++) { ... }
+while (cond) { ... }
+    </pre>
+    <p><strong>Arrays:</strong> map, filter, reduce</p>
+    <p><strong>Objetos:</strong></p>
+    <pre>
+const pessoa = { nome: "Ana", idade: 20 };
+console.log(pessoa.nome);
+    </pre>
+  </section>
+
+  <!-- AULA 2 -->
+  <section>
+    <h2>2. JS - Aula 2: Funções, Classes, DOM</h2>
+    <p><strong>Funções:</strong></p>
+    <pre>
+// Normal
+function somar(x, y) { return x + y; }
+
+// Arrow Function
+const subtrair = (a, b) => a - b;
+    </pre>
+
+    <p><strong>Classes:</strong></p>
+    <pre>
+class Animal {
+  constructor(nome) {
+    this.nome = nome;
+  }
+  falar() {
+    console.log(this.nome + " fez um som");
+  }
+}
+
+class Cachorro extends Animal {
+  falar() {
+    console.log(this.nome + " latiu!");
+  }
+}
+    </pre>
+
+    <p><strong>DOM:</strong></p>
+    <pre>
+document.getElementById("meuId")
+document.querySelector(".minhaClasse")
+document.querySelectorAll("p")
+    </pre>
+
+    <p><strong>Eventos:</strong></p>
+    <pre>
+document.getElementById("btn").addEventListener("click", () => {
+  alert("Clicou!");
+});
+    </pre>
+
+    <p><strong>Alterando conteúdo/style:</strong></p>
+    <pre>
+element.innerText = "Novo texto";
+element.style.color = "red";
+    </pre>
+  </section>
+
+  <!-- AULA 4 -->
+  <section>
+    <h2>3. JS - Aula 4: Assíncrono, Promises, Async/Await</h2>
+    <p><strong>Callback:</strong> função passada como parâmetro.</p>
+    <p><strong>Promise:</strong></p>
+    <pre>
+const promessa = new Promise((resolve, reject) => {
+  setTimeout(() => resolve("Sucesso!"), 1000);
+});
+
+promessa.then(console.log);
+    </pre>
+
+    <p><strong>Async/Await:</strong></p>
+    <pre>
+async function exemplo() {
+  try {
+    const res = await fetch("https://hp-api.onrender.com/api/characters");
+    const data = await res.json();
+    console.log(data);
+  } catch (e) {
+    console.error("Erro:", e);
+  }
+}
+exemplo();
+    </pre>
+  </section>
+
+</body>
+</html>

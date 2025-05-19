@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>JS - Aula 4 (Async/Await)</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f9ff;
+      padding: 20px;
+    }
+    h2 {
+      color: #065f88;
+    }
+    section {
+      background: white;
+      padding: 15px;
+      border-left: 5px solid #065f88;
+      margin-bottom: 20px;
+    }
+    pre {
+      background: #eee;
+      padding: 10px;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <section>
+    <h2>Conceito de Código Assíncrono</h2>
+    <p>
+      JavaScript é single-threaded. Para não travar a interface durante operações demoradas, usamos código assíncrono.
+    </p>
+    <p>
+      Enquanto espera pela resposta de um servidor, o JS continua executando outras tarefas.
+    </p>
+  </section>
+
+  <section>
+    <h2>Callback vs Promises</h2>
+    <pre>
+// Callback (forma antiga)
+setTimeout(() => {
+  console.log("Executou depois de 1 segundo");
+}, 1000);
+
+// Promise (forma moderna)
+const promessa = new Promise((resolve, reject) => {
+  setTimeout(() => resolve("Sucesso!"), 1000);
+});
+
+promessa.then(res => console.log(res));
+    </pre>
+  </section>
+
+  <section>
+    <h2>Promise Chaining</h2>
+    <pre>
+fetch("https://hp-api.onrender.com/api/characters")
+  .then(res => res.json())
+  .then(data => {
+    console.log("Personagens:", data);
+  })
+  .catch(err => console.error("Erro:", err));
+    </pre>
+  </section>
+
+  <section>
+    <h2>Async / Await</h2>
+    <pre>
+async function buscarPersonagens() {
+  try {
+    const resposta = await fetch("https://hp-api.onrender.com/api/characters");
+    const personagens = await resposta.json();
+    console.log("Personagens:", personagens);
+  } catch (erro) {
+    console.error("Erro:", erro);
+  }
+}
+
+buscarPersonagens();
+    </pre>
+  </section>
+
+  <section>
+    <h2>Exemplo Prático com HTML</h2>
+    <pre>
+<!-- HTML -->
+<input type="text" id="name" value="Matilda">
+<input type="text" id="delay" value="1000">
+<button id="set-alarm">Set Alarm</button>
+<div id="output"></div>
+
+<!-- JS -->
+<script>
+  const name = document.querySelector("#name");
+  const delay = document.querySelector("#delay");
+  const button = document.querySelector("#set-alarm");
+  const output = document.querySelector("#output");
+
+  async function alarm(person, delay) {
+    if (delay < 0) {
+      throw new Error("Tempo inválido");
+    }
+
+    return new Promise(resolve => {
+      setTimeout(() => {
+        resolve(`Acorda, ${person}!`);
+      }, delay);
+    });
+  }
+
+  button.addEventListener("click", async () => {
+    try {
+      const msg = await alarm(name.value, Number(delay.value));
+      output.textContent = msg;
+    } catch (err) {
+      output.textContent = `Erro: ${err.message}`;
+    }
+  });
+</script>
+    </pre>
+  </section>
+
+  <section>
+    <h2>Promise.all vs Promise.any</h2>
+    <pre>
+const p1 = fetch("/api1");
+const p2 = fetch("/api2");
+
+Promise.all([p1, p2])
+  .then(res => console.log("Todas as promessas resolvidas"));
+
+Promise.any([p1, p2])
+  .then(res => console.log("A primeira resolvida foi:", res));
+    </pre>
+  </section>
+
+</body>
+</html>

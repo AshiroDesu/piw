@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Exercício 4 - JS Aula 1</title>
+</head>
+<body>
+  <h1>Exercício 4 - JavaScript</h1>
+  <h2>Aluno: Aglivan Gomes da Silva Junior - 555291</h2>
+
+  <h2>Valor total das vendas</h2>
+  <p>Use reduce para calcular o valor total das vendas.</p>
+  <hr>
+
+  <h2>*Abrir console*</h2>
+
+  <script>
+    console.log("=== Exercício 4 ===");
+
+    const vendas = [
+      { produto: "Notebook", preco: 2500, quantidade: 2 },
+      { produto: "Smartphone", preco: 1500, quantidade: 3 },
+      { produto: "Teclado", preco: 200, quantidade: 5 }
+    ];
+
+    const totalVendas = vendas.reduce((total, venda) => {
+      return total + (venda.preco * venda.quantidade);
+    }, 0);
+    
+    console.log("Valor total das vendas: R$ " + totalVendas);
+  </script>
+</body>
+</html>

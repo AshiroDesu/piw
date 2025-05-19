@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <title>Herança em classes</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <script type="text/javascript">
+      
+      class Animal {
+        constructor(tipo, som, comida) {
+         this._tipo = tipo;
+         this._som = som;
+         this._comida = comida;
+        }
+
+        get tipo() {
+          return `${this._tipo}`;
+          }
+
+        set tipo(novoTipo) {
+          if (novoTipo != null) {
+            this._tipo = novoTipo;
+          } else {
+            console.log("O tipo não pode estar vazio.");
+          }
+        }
+
+        get som() {
+          return `${this._som}`;
+          }
+
+        set som(novoSom) {
+          if (novoSom != null) {
+            this._som = novoSom;
+          } else {
+            console.log("O som não pode estar vazio.");
+          }
+        }
+
+        get comida() {
+          return `${this._comida}`;
+          }
+
+        set comida(novoComer) {
+          if (novoComer != null) {
+            this._comida = novoComer;
+          } else {
+            console.log("A comida não pode estar vazia.");
+          }
+        }
+
+        emitirSom() {
+          console.log(`O(a) ${this.tipo} faz ${this.som}`);
+        }
+
+        comer() {
+          console.log(`O(a) ${this.tipo} come ${this.comida}`);
+        }
+      }
+
+      class Cachorro extends Animal{
+        constructor(tipo, som, comida) {
+          super(tipo, som, comida);
+          this._tipo = "Cachorro";
+          this._som = "au";
+          this._comida = "ração";
+        }
+      }
+
+      class Pato extends Animal{
+        constructor(tipo, som, comida) {
+          super(tipo, som, comida);
+          this._tipo = "Pato";
+          this._som = "qua";
+          this._comida = "pão";
+        }
+      }
+
+      class Gato extends Animal{
+        constructor(tipo, som, comida) {
+          super(tipo, som, comida);
+          this._tipo = "Gato";
+          this._som = "miau";
+          this._comida = "peixe";
+        }
+      }
+
+      const cao = new Cachorro;
+      cao.emitirSom();
+      cao.som = prompt(`Mude o som do ${cao.tipo}`);
+      cao.emitirSom();
+      cao.comer();
+      console.log("------------------------------");
+
+      const patolino = new Pato;
+      patolino.emitirSom();
+      patolino.som = prompt(`Mude o som do ${patolino.tipo}`);
+      patolino.emitirSom();
+      patolino.comer();
+      console.log("------------------------------");
+
+      const xano = new Gato;
+      xano.emitirSom();
+      xano.som = prompt(`Mude o som do ${xano.tipo}`);
+      xano.emitirSom();
+      xano.comer();
+      console.log("------------------------------");
+
+      const serpente = new Animal("cobra","hssssss","ovo");
+      serpente.emitirSom();
+      serpente.som = prompt(`Mude o som do ${serpente.tipo}`);
+      serpente.emitirSom();
+      serpente.comer();
+
+    </script>
+  </body>
+</html>

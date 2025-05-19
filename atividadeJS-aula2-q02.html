@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculadora de Total</title>
+</head>
+<body>
+  <label>Preço: <input type="number" id="prodValue"></label>
+  <label>Quantidade: <input type="number" id="prodQntd"></label>
+  <p>Total: <span id="totalValue">0</span></p>
+
+  <script>
+    const precoInput = document.getElementById('prodValue');
+    const qntdInput = document.getElementById('prodQntd');
+    const totalDisplay = document.getElementById('totalValue');
+
+    function atualizarTotal() {
+      const preco = parseFloat(precoInput.value) || 0;
+      const quantidade = parseInt(qntdInput.value) || 0;
+      const total = preco * quantidade;
+      totalDisplay.textContent = total.toFixed(2);
+    }
+
+    precoInput.addEventListener('input', atualizarTotal);
+    qntdInput.addEventListener('input', atualizarTotal);
+  </script>
+</body>
+</html>

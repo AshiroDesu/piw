@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Exercício 1 - JS Aula 1</title>
+</head>
+<body>
+  <h1>Exercício 1 - JavaScript</h1>
+  <h2>Aluno: Aglivan Gomes da Silva Junior - 555291</h2>
+
+  <h2>Exercício 1.1 - Array com 30 posições somadas a 23</h2>
+  <p>Crie um array com 30 posições, preenchendo com o valor da posição + 23.</p>
+  <hr>
+
+  <h2>Exercício 1.2 - Adicionando sobrenome com map</h2>
+  <p>Adicione " da Silva Sauro" aos nomes usando map.</p>
+  <hr>
+
+  <h2>*Abrir console*</h2>
+
+  <script>
+    // Exercício 1.1
+    console.log("=== Exercício 1.1 ===");
+
+    let array = [];
+    for (let i = 0; i <= 30; i++) {
+      array[i] = i + 23;
+    }
+
+    console.log("Array com valores de 23 a 53:");
+    array.forEach((valor) => console.log(valor));
+
+    // Exercício 1.2
+    console.log("\n=== Exercício 1.2 ===");
+    
+    const nomes = ['Dino', 'Baby', 'Charlote'];
+    const nomesComSobrenome = nomes.map(nome => `${nome} da Silva Sauro`);
+    
+    console.log("Nomes com sobrenome:");
+    nomesComSobrenome.forEach(nome => console.log(nome));
+  </script>
+</body>
+</html>

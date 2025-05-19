@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Harry Potter</title>
+</head>
+<body>
+  <h1>Personagens de Hogwarts</h1>
+  <div id="staff-list">Carregando...</div>
+
+  <script>
+    async function fetchStaff() {
+      try {
+        const response = await fetch('https://hp-api.onrender.com/api/characters/staff');
+        if (!response.ok) {
+          throw new Error(`Erro na requisição: ${response.status}`);
+        }
+
+        const data = await response.json();
+        const staffList = document.getElementById('staff-list');
+        staffList.innerHTML = '';
+
+        if (data.length === 0) {
+          staffList.textContent = 'Nenhum personagem encontrado.';
+          return;
+        }
+
+        data.forEach(character => {
+          const p = document.createElement('p');
+          p.textContent = `Nome: ${character.name}`;
+          staffList.appendChild(p);
+        });
+      } catch (error) {
+        document.getElementById('staff-list').textContent = 'Erro ao carregar os dados.';
+        console.error(error);
+      }
+    }
+
+    fetchStaff();
+  </script>
+</body>
+</html>
