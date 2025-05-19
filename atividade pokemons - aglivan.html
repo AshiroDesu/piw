@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pokemons aglivan</title>
+<style>
+    body {
+      margin: 0px;
+      padding: 0px;
+      height: 100vh;
+    }
+    #container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .pokemon {
+      width: 100px;
+      text-align: center;
+    }
+    .pokemon img {
+      width: 80px;
+      height: 80px;
+    }
+  </style>
+</head>
+
+<body id="meubody">
+    <h4>Aperte para gerar um pokemon</h4>
+
+    <div id="container"></div>
+      <script>
+      let pokemonCount = 1;
+      const container = document.getElementById('container');
+
+      const createPokemonElement = (isGhost = false) => {
+       const div = document.createElement('div');
+       div.classList.add('pokemon');
+
+        const img = document.createElement('img');
+        const label = document.createElement('div');
+
+        if (isGhost) {
+          img.src = 'https://static.wikia.nocookie.net/character-stats-and-profiles/images/1/1a/Ghost_new_version_2010_by_thenaruterox100pre-d30rx8i_%281%29.jpg';
+          label.textContent = 'ghost';
+       } else {
+         const id = String(pokemonCount).padStart(3, '0');
+          img.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonCount}.png`;
+          label.textContent = `#${id}`;
+          pokemonCount++;
+        }
+
+        div.appendChild(img);
+        div.appendChild(label);
+        container.appendChild(div);
+
+      };
+
+
+      const meubody = document.getElementById("meubody")
+
+      meubody.addEventListener("click", (e) => {
+          createPokemonElement(false);
+      })
+
+      meubody.addEventListener("dblclick", (e) => {
+        createPokemonElement(true);
+      });
+  </script>
+</body>
+</html>
