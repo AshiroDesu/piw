@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>pokemon async</title>
+    <style>
+        #headerDiv {
+            display: flex;
+            flex-wrap: wrap;
+            height: 100px;
+            background-color: red;
+            color: chartreuse;
+            align-items: center;
+            text-align: center;
+            font-family: 'Courier New', Courier, monospace; 
+            font-weight: bold;  
+            padding-left: 50%;
+            padding-right: 50%;
+        }
+
+        #container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .pokemons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: antiquewhite;
+            width: 100px;
+            text-align: center;
+            padding: 10px;
+            border-radius: 8px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .pokemons img {
+            width: 80px;
+            height: 80px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id=headerDiv>POKEDEX</div>
+    <div id="container"></div>
+
+    <script>
+        async function fetchPkmn() {
+            for (let index = 1; index <= 151; index++) {
+                try {
+                    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${index}`);
+                    if (!response.ok) {
+                        throw new Error(`Erro na requisição: ${response.status}`);
+                    }
+
+                    const data = await response.json();
+                    const container = document.getElementById('container');
+
+                    if (data.length === 0) {
+                        container.textContent = 'Nenhum pokemon encontrado.';
+                        return;
+                    }
+
+                    const pokemonsCard = document.createElement('div');
+                    pokemonsCard.classList.add('pokemons');
+
+                    const img = document.createElement('img');
+                    img.src = data.sprites.front_default;
+
+                    const labelName = document.createElement('div');
+                    labelName.textContent = `${data.name}`;
+
+                    const labelId = document.createElement('div');
+                    labelId.textContent = `#${data.id}`;
+
+
+
+                    pokemonsCard.appendChild(img);
+                    pokemonsCard.appendChild(labelName);
+                    pokemonsCard.appendChild(labelId);
+
+                    container.appendChild(pokemonsCard);
+                } catch (error) {
+                    document.getElementById('container').textContent = 'Erro ao carregar os dados.';
+                    console.error(error);
+                }
+            }
+        }
+
+        fetchPkmn();
+    </script>
+</body>
+
+</html>
